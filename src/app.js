@@ -55,6 +55,16 @@ app.patch("/mens/:id", async(req, res) => {
     }
 })
 
+//we will handle delete req of individual
+app.delete("/mens/:id", async (req, res) => {
+    try{
+        const _id = req.params.id;
+        const getMen = await MensRanking.findByIdAndDelete(req.params.id)
+        res.send(getMen)
+    }catch(e){
+        res.status(500).send(e);
+    }
+})
 
 app.listen(port, () => {
     console.log(`Connection is live at port no. ${port}`);
